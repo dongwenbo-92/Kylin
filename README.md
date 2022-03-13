@@ -1,1 +1,1 @@
-# Kylin - A Github Client For Android 
+# Kylin - A GitHub client for Android 
