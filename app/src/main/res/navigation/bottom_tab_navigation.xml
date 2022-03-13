@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_tab_navigation"
+    app:startDestination="@id/tab_fragment_1">
+
+    <fragment
+        android:id="@+id/tab_fragment_1"
+        android:name="com.dongwenbo.kylin.BlankFragment1"
+        android:label="fragment_blank1"
+        tools:layout="@layout/fragment_blank1" />
+    <fragment
+        android:id="@+id/tab_fragment_2"
+        android:name="com.dongwenbo.kylin.BlankFragment2"
+        android:label="fragment_blank2"
+        tools:layout="@layout/fragment_blank2" />
+    <fragment
+        android:id="@+id/tab_fragment_3"
+        android:name="com.dongwenbo.kylin.BlankFragment3"
+        android:label="fragment_blank3"
+        tools:layout="@layout/fragment_blank3" />
+    <fragment
+        android:id="@+id/tab_fragment_4"
+        android:name="com.dongwenbo.kylin.BlankFragment4"
+        android:label="fragment_blank4"
+        tools:layout="@layout/fragment_blank4" />
+</navigation>
