@@ -5,7 +5,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.dongwenbo.kylin.MainActivity
 import com.dongwenbo.kylin.databinding.ActivityLoginBinding
+import com.dongwenbo.kylin.global.BASE_URL
 import com.dongwenbo.kylin.login.api.AuthService
 import com.dongwenbo.kylin.login.utilities.CLIENT_ID
 import com.dongwenbo.kylin.login.utilities.REDIRECT_URI
@@ -22,8 +24,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
         binding.loginBtn.setOnClickListener {
-            this.timeStamp = System.currentTimeMillis().toString()
-            this.authorizeFromBrowser(CLIENT_ID, REDIRECT_URI, SCOPE, this.timeStamp)
+            timeStamp = System.currentTimeMillis().toString()
+            authorizeFromBrowser(CLIENT_ID, REDIRECT_URI, SCOPE, timeStamp)
         }
     }
 
@@ -31,10 +33,25 @@ class LoginActivity : AppCompatActivity() {
         super.onNewIntent(intent)
         //校验随机码
         val state = intent?.data?.getQueryParameter("state")
-        if (state != null && state == this.timeStamp){
+        if (state != null && state == timeStamp){
             val code = intent.data?.getQueryParameter("code")
             Log.d(TAG, "onResume: $code")
+            if (code != null) {
+//                accessToken(code)
+                navigationToMainActivity()
+                finish()
+            }
         }
+    }
+
+    fun accessToken(code:String){
+        val authService = AuthService.create()
+        val response = authService.accessToken(CLIENT_ID,"",code)
+    }
+
+    fun navigationToMainActivity() {
+        val intent = Intent(this,MainActivity::class.java)
+        startActivity(intent)
     }
 
     /**
@@ -53,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
         state: String = "123456",
         allowSignup: String = "true"
     ) {
-        val link = AuthService.BASE_URL + AuthService.AUTH_PATH
+        val link = BASE_URL + AuthService.AUTH_PATH
         val paras =
             "client_id=$clientId&redirect_uri=$redirectUri&scope=$scope&state=$state&allow_signup=$allowSignup"
         val uri: Uri =

@@ -16,6 +16,10 @@
             android:exported="true"
             android:launchMode="singleTask">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
                 <data
                     android:host="com.dongwenbo.kylin"
                     android:path="/login"
@@ -25,12 +29,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".MainActivity">
 
+        </activity>
     </application>
     <queries>
         <intent>
